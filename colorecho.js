@@ -7,12 +7,14 @@ let started = false;
 let level = 0;
 
 let h2 = document.querySelector("h2");
+const startBtn=document.getElementById("startBtn");
 
-document.addEventListener("keypress", function () {
+startBtn.addEventListener("click", function () {
     if (started == false) {
         console.log("Game is Started");
         started = true;
         levelUp();
+        startBtn.disabled=true;
     }
 });
 function gameFlash(btn) {
