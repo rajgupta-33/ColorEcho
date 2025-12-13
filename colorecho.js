@@ -37,7 +37,7 @@ function levelUp() {
     level++;
     h2.innerText = `Level ${level}`;
 
-    let randIdx = Math.floor(Math.random() * 3);
+    let randIdx = Math.floor(Math.random() * btns.length);
     let randColor = btns[randIdx];
     let randBtn = document.querySelector(`.${randColor}`);
     gameSeq.push(randColor);
@@ -61,9 +61,7 @@ function checkAns(idx) {
     }
 }
 
-restartBtn.addEventListener("click",function(){
-    location.reload();
-});
+restartBtn.addEventListener("click",restartGame);
 
 function btnPress() {
     let btn = this;
@@ -79,8 +77,15 @@ for (btn of allBtns) {
 }
 
 function reset() {
-    started = false;
     gameSeq = [];
     userSeq = [];
     level = 0;
+}
+
+function restartGame(){
+    reset();
+    started = true;
+    startBtn.style.display="none";
+    restartBtn.style.display="none";
+    levelUp();
 }
