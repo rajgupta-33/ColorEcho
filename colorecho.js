@@ -8,13 +8,15 @@ let level = 0;
 
 let h2 = document.querySelector("h2");
 const startBtn=document.getElementById("startBtn");
+const restartBtn=document.getElementById("restartBtn");
 
 startBtn.addEventListener("click", function () {
     if (started == false) {
         console.log("Game is Started");
         started = true;
         levelUp();
-        startBtn.disabled=true;
+        startBtn.style.display="none";
+        restartBtn.style.display="none";
     }
 });
 function gameFlash(btn) {
@@ -48,14 +50,20 @@ function checkAns(idx) {
             setTimeout(levelUp, 1000);
         }
     } else {
-        h2.innerHTML = `Game Over! Your score was <b> ${level - 1} </b> <br> Press any key to start.`;
+        h2.innerHTML = `Game Over! Your score was <b> ${level - 1} </b> <br> Press Restart Game Button to start the game.`;
         document.querySelector("body").style.backgroundColor = "red";
         setTimeout(function () {
             document.querySelector("body").style.backgroundColor = "white";
         }, 250);
         reset();
+        startBtn.style.display="none";
+        restartBtn.style.display="inline-block";
     }
 }
+
+restartBtn.addEventListener("click",function(){
+    location.reload();
+});
 
 function btnPress() {
     let btn = this;
